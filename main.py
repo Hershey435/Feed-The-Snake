@@ -19,6 +19,8 @@ sc.onkey(snake.up, "Up")
 sc.onkey(snake.down, "Down")
 sc.onkey(snake.left, "Left")
 sc.onkey(snake.right, "Right")
+# sc.onkey(sc.exitonclick, "space")
+
 
 is_game_on = True
 while is_game_on:
@@ -36,18 +38,17 @@ while is_game_on:
     x = snake.head.xcor()
     y = snake.head.ycor()
     if x > 270 or x < -270 or y > 270 or y < -270:
-        is_game_on = False
-        score.game_over()
+        score.reset_score()
+        snake.reset()
 
     # Collision with tail
     for segment in range(0, len(snake.segments) - 1):
         if snake.segments[segment] == snake.head:
-            #print("1")
+            # print("1")
             pass
         elif snake.head.distance(snake.segments[segment]) < 5:
-            print("2")
-            score.game_over()
-            is_game_on = False
-
+            # print("2")
+            score.reset_score()
+            snake.reset()
 
 sc.exitonclick()
